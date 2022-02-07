@@ -1,0 +1,43 @@
+import React, { Suspense, useEffect } from "react";
+import axios from "axios";
+import { Route, Switch } from "react-router-dom";
+import Auth from "../hoc/auth";
+// pages for this product
+import LandingPage from "./views/LandingPage/LandingPage.js";
+import LoginPage from "./views/LoginPage/LoginPage.js";
+import RegisterPage from "./views/RegisterPage/RegisterPage.js";
+import NavBar from "./views/NavBar/NavBar";
+import Footer from "./views/Footer/Footer";
+import UploadProductPage from "./views/UploadProductPage/UploadProductPage";
+
+//null   Anyone Can go inside
+//true   only logged in user can go inside
+//false  logged in user can't go inside
+
+function App() {
+  useEffect(() => {
+    axios.get("/test").then((res) => {
+      console.log(res.data);
+    });
+  }, []);
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NavBar />
+      <div style={{ paddingTop: "69px", minHeight: "calc(100vh - 80px)" }}>
+        <Switch>
+          <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Route exact path="/login" component={Auth(LoginPage, false)} />
+          <Route exact path="/register" component={Auth(RegisterPage, false)} />
+          <Route
+            exact
+            path="/product/upload"
+            component={Auth(UploadProductPage, true)}
+          />
+        </Switch>
+      </div>
+      <Footer />
+    </Suspense>
+  );
+}
+
+export default App;
