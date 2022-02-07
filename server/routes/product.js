@@ -43,11 +43,18 @@ router.post("/", (req, res) => {
   });
 });
 
-router.get("/products", async (req, res) => {
+router.post("/products", async (req, res) => {
+  let limit = req.body.limit ? parseInt(req.body.limit) : 20;
+  let skip = req.body.skip ? parseInt(req.body.skip) : 0;
   // product collection에 들어 있는 상품 정보를 가져오기
   try {
-    const productInfo = await Product.find().populate("writer");
-    return res.status(200).json({ success: true, productInfo });
+    const productInfo = await Product.find()
+      .populate("writer")
+      .skip(skip)
+      .limit(limit);
+    return res
+      .status(200)
+      .json({ success: true, productInfo, postSize: productInfo.length });
   } catch (error) {
     return res.status(400).json({ success: false, error });
   }

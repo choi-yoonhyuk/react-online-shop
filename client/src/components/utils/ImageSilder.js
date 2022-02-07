@@ -1,4 +1,4 @@
-import { Carousel } from "antd";
+import { Icon, Col, Card, Row, Carousel } from "antd";
 import React from "react";
 
 function ImageSlider(props) {
