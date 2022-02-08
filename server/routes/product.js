@@ -46,17 +46,56 @@ router.post("/", (req, res) => {
 router.post("/products", async (req, res) => {
   let limit = req.body.limit ? parseInt(req.body.limit) : 20;
   let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+  let term = req.body.searchTerm;
+
+  let findArgs = {};
+
+  for (let key in req.body.filters) {
+    if (req.body.filters[key].length > 0) {
+      if (key === "price") {
+        findArgs[key] = {
+          // Mongo DB
+
+          //Greater than equal  ex) 200
+          $gte: req.body.filters[key][0],
+          //Less than equal  ex) 249
+          $lte: req.body.filters[key][1],
+        };
+      } else {
+        findArgs[key] = req.body.filters[key];
+      }
+    }
+  }
+
+  console.log("findArgs", findArgs);
+
   // product collection에 들어 있는 상품 정보를 가져오기
-  try {
-    const productInfo = await Product.find()
-      .populate("writer")
-      .skip(skip)
-      .limit(limit);
-    return res
-      .status(200)
-      .json({ success: true, productInfo, postSize: productInfo.length });
-  } catch (error) {
-    return res.status(400).json({ success: false, error });
+  if (term) {
+    try {
+      const productInfo = await Product.find(findArgs)
+        // Mongo DB
+        .find({ $text: { $search: term } })
+        .populate("writer")
+        .skip(skip)
+        .limit(limit);
+      return res
+        .status(200)
+        .json({ success: true, productInfo, postSize: productInfo.length });
+    } catch (error) {
+      return res.status(400).json({ success: false, error });
+    }
+  } else {
+    try {
+      const productInfo = await Product.find(findArgs)
+        .populate("writer")
+        .skip(skip)
+        .limit(limit);
+      return res
+        .status(200)
+        .json({ success: true, productInfo, postSize: productInfo.length });
+    } catch (error) {
+      return res.status(400).json({ success: false, error });
+    }
   }
 });
 
