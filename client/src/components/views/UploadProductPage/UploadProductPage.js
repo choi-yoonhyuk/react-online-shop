@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
 import FileUpload from "../../utils/FileUpload";
-import axios from "axios";
+import Axios from "axios";
 
 const { TextArea } = Input;
 
@@ -16,11 +16,11 @@ const Continents = [
 ];
 
 function UploadProductPage(props) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [continent, setContinent] = useState(1);
-  const [images, setImages] = useState([]);
+  const [Title, setTitle] = useState("");
+  const [Description, setDescription] = useState("");
+  const [Price, setPrice] = useState(0);
+  const [Continent, setContinent] = useState(1);
+  const [Images, setImages] = useState([]);
 
   const titleChangeHandler = (event) => {
     setTitle(event.currentTarget.value);
@@ -31,10 +31,12 @@ function UploadProductPage(props) {
   };
 
   const priceChangeHandler = (event) => {
+    console.log(event.currentTarget.value);
     setPrice(event.currentTarget.value);
   };
 
   const continentChangeHandler = (event) => {
+    console.log(event.currentTarget.value);
     setContinent(event.currentTarget.value);
   };
 
@@ -42,9 +44,11 @@ function UploadProductPage(props) {
     setImages(newImages);
   };
 
-  const submitHandler = () => {
-    if (!title || !description || !price || !continent || images.length === 0) {
-      return alert("값을 모두 넣어주세요");
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    if (!Title || !Description || !Price || !Continent || Images.length === 0) {
+      return alert(" 모든 값을 넣어주셔야 합니다.");
     }
 
     // 서버에 채운 값들을 request로 보낸다
@@ -52,19 +56,21 @@ function UploadProductPage(props) {
     const body = {
       // 현재 로그인된 사람의 ID
       writer: props.user.userData._id,
-      title: title,
-      description: description,
-      price: price,
-      images: images,
-      continents: continent,
+      title: Title,
+      description: Description,
+      price: Price,
+      images: Images,
+      continents: Continent,
     };
 
-    axios.post("/api/product", body).then((response) => {
+    console.log(body);
+
+    Axios.post("/api/product", body).then((response) => {
       if (response.data.success) {
-        alert("상품 업로드 성공");
+        alert("상품 업로드에 성공 했습니다.");
         props.history.push("/");
       } else {
-        alert("상품 업로드 실패");
+        alert("상품 업로드에 실패 했습니다.");
       }
     });
   };
@@ -79,20 +85,20 @@ function UploadProductPage(props) {
         <br />
         <br />
         <label>이름</label>
-        <Input onChange={titleChangeHandler} value={title} />
+        <Input onChange={titleChangeHandler} value={Title} />
         <br />
         <br />
         <label>설명</label>
-        <TextArea onChange={descriptionChangeHandler} value={description} />
+        <TextArea onChange={descriptionChangeHandler} value={Description} />
         <br />
         <br />
         <label>가격($)</label>
-        <Input type="number" onChange={priceChangeHandler} value={price} />
+        <Input type="number" onChange={priceChangeHandler} value={Price} />
         <br />
         <br />
-        <select onChange={continentChangeHandler} value={continent}>
+        <select onChange={continentChangeHandler} value={Continent}>
           {Continents.map((item) => (
-            <option key={item.key} value={item.value}>
+            <option key={item.key} value={item.key}>
               {item.value}
             </option>
           ))}

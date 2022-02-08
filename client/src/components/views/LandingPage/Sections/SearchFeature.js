@@ -10,6 +10,7 @@ function SearchFeature(props) {
     setSearchTerm(event.currentTarget.value);
     props.refreshFunction(event.currentTarget.value);
   };
+
   return (
     <div>
       <Search
