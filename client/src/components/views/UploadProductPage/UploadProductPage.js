@@ -6,13 +6,15 @@ import Axios from "axios";
 const { TextArea } = Input;
 
 const Continents = [
-  { key: 1, value: "Africa" },
-  { key: 2, value: "Europe" },
-  { key: 3, value: "Asia" },
-  { key: 4, value: "North America" },
-  { key: 5, value: "South America" },
-  { key: 6, value: "Australia" },
-  { key: 7, value: "Antarctica" },
+  { key: 1, value: "디지털기기" },
+  { key: 2, value: "생활가전" },
+  { key: 3, value: "가구/인테리어" },
+  { key: 4, value: "생활/가공식품" },
+  { key: 5, value: "도서/티켓/음반" },
+  { key: 6, value: "스포츠/레저" },
+  { key: 7, value: "의류/잡화" },
+  { key: 8, value: "게임/취미" },
+  { key: 9, value: "기타" },
 ];
 
 function UploadProductPage(props) {
@@ -78,7 +80,7 @@ function UploadProductPage(props) {
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-        <h2>여행상품업로드</h2>
+        <h2>상품업로드</h2>
       </div>
       <Form onSubmit={submitHandler}>
         <FileUpload refreshFunction={updateImages} />

@@ -14,7 +14,7 @@ function ProductInfo(props) {
     <div>
       <Descriptions title="Product Info">
         <Descriptions.Item label="Price">
-          {props.detail.price} 원
+          {props.detail.price} $
         </Descriptions.Item>
         <Descriptions.Item label="Sold">{props.detail.sold}</Descriptions.Item>
         <Descriptions.Item label="View">{props.detail.views}</Descriptions.Item>

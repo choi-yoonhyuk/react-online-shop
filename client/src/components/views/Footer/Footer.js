@@ -14,8 +14,7 @@ function Footer() {
       }}
     >
       <p>
-        {" "}
-        Happy Shopping <Icon type="smile" />
+        반갑습니다 <Icon type="smile" />
       </p>
     </div>
   );

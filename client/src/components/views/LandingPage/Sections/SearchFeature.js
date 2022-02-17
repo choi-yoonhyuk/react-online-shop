@@ -14,7 +14,7 @@ function SearchFeature(props) {
   return (
     <div>
       <Search
-        placeholder="input search text"
+        placeholder="상품명을 입력해주세요."
         onChange={searchHandler}
         style={{ width: 200 }}
         value={SearchTerm}

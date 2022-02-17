@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Icon, Col, Card, Row, Carousel } from "antd";
+import { Col, Card, Row, Carousel } from "antd";
 import Meta from "antd/lib/card/Meta";
 import ImageSlider from "../../utils/ImageSilder";
 import CheckBox from "./Sections/CheckBox";
@@ -128,10 +128,7 @@ function LandingPage() {
   return (
     <div style={{ width: "75%", margin: "3rem auto" }}>
       <div style={{ textAlign: "center" }}>
-        <h2>
-          Let's Travel Anywhere
-          <Icon type="rocket" />
-        </h2>
+        <h2>Let's Shopping Anywhere!</h2>
       </div>
       {/* Filter */}
 
