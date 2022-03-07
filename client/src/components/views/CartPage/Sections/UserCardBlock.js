@@ -5,7 +5,7 @@ function UserCardBlock(props) {
   const renderCartImage = (images) => {
     if (images.length > 0) {
       let image = images[0];
-      return `http://localhost:4000/${image}`;
+      return `https://protected-depths-12640.herokuapp.com/${image}`;
     }
   };
 

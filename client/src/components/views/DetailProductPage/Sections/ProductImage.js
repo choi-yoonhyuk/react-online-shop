@@ -9,8 +9,8 @@ function ProductImage(props) {
       let images = [];
       props.detail.images.map((item) => {
         images.push({
-          original: `http://localhost:4000/${item}`,
-          thumbnail: `http://localhost:4000/${item}`,
+          original: `https://protected-depths-12640.herokuapp.com/${item}`,
+          thumbnail: `https://protected-depths-12640.herokuapp.com/${item}`,
         });
       });
 
