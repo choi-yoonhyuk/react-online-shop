@@ -18,7 +18,7 @@ MongoClient.connect(
   console.log("DB Connect");
 });
 
-app.get("/", (req, res) => res.send("반가워"));
+app.get("/hellotest", (req, res) => res.send("반가워"));
 
 app.use(cors());
 
