@@ -37,6 +37,7 @@ app.get("/test", (req, res) => {
   });
 });
 
+// 모든 JS와 CSS 파일 같은 static한 파일들은 이곳에서 처리된다.
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
