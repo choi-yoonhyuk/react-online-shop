@@ -11,14 +11,11 @@ const { Title } = Typography;
 function LoginPage(props) {
   const dispatch = useDispatch();
   const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
-
   const [formErrorMessage, setFormErrorMessage] = useState("");
   const [rememberMe, setRememberMe] = useState(rememberMeChecked);
-
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
-
   const initialEmail = localStorage.getItem("rememberMe")
     ? localStorage.getItem("rememberMe")
     : "";

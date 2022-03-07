@@ -23,6 +23,7 @@ export function registerUser(dataToSubmit) {
 }
 
 export function loginUser(dataToSubmit) {
+  console.log(dataToSubmit);
   const request = axios
     .post(`${USER_SERVER}/login`, dataToSubmit)
     .then((response) => response.data);
