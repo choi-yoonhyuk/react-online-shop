@@ -53,4 +53,4 @@ npm install
 
 ## 정보
 
-최윤혁 – dbsgur46894689@example.com
+최윤혁 – dbsgur46894689@gmail.com
