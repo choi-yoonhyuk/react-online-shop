@@ -26,6 +26,7 @@ function UserCardBlock(props) {
           <button
             onClick={() => {
               props.removeItem(product._id);
+              alert("장바구니에 담긴 상품을 삭제하시겠습니까?");
             }}
           >
             Remove
