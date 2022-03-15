@@ -8,6 +8,8 @@
 &nbsp
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/></a>
  &nbsp
+ <img src="https://img.shields.io/badge/Heroku-662D91?style=flat-square&logo=Heroku&logoColor=white"/></a>
+ &nbsp
  </p>
 
 > 중고물품을 자유롭게 올리고 거래할 수 있는 쇼핑 앱입니다.
